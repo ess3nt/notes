@@ -1,0 +1,23 @@
+/*
+.pt-card {
+    width: 100%;
+}*/
+
+.card_note {
+    width: 270px;
+    margin: 10px;
+}
+.close_img{
+    position: absolute;
+    left: 240px;
+    top: 0;
+    opacity: 0.2;
+    height: 30px;
+    width: 30px;
+}
+.close_img:hover{
+    opacity: 0.5;
+}
+.img_display{
+    display: none;
+}

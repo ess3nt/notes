@@ -1,0 +1,11 @@
+
+.wrapper_form_create_note{
+    border-radius: 5px;
+    padding: 20px;
+    margin: auto;
+    width: 370px;
+    min-height: 180px;
+    border: 1px solid gainsboro;
+    background-color: white;
+}
+

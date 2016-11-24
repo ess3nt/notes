@@ -1,0 +1,14 @@
+body{
+  background-image: url("../../public/Material Design 03.png");
+  background-size: cover;
+}
+
+.App {
+  display: block;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+}
+
+
+
