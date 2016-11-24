@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node server.js",
+    "start": "./node_modules/.bin/babel-node server.js",
     "db": "C:/mongodb/bin/mongod.exe --dbpath C:/mongodb/data",
-    "build": "NODE_ENV=production babel-node server.js"
+    "build": "NODE_ENV=production babel-node server.js",
+    "heroku-postbuild": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors"
   },
   "author": "Igor Poltavets",
   "license": "ISC",
