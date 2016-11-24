@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CreaterNotes from './CreaterNotes';
 import Notes from './Notes';
 
-import './App.css';
+import './App.scss';
 
 
 

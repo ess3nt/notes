@@ -11,6 +11,13 @@ import { addNote } from '../actions'
 import './CreaterNotes.css'
 
 class CreaterNotes extends Component {
+    constructor(){
+        super();
+        this.state = {
+            titleInput: '',
+            noteInput: ''
+        }
+    }
 
     handleButton(e){
             // todo диспатч возвращает промис, сделать локальный стейт для кнопки
@@ -18,10 +25,25 @@ class CreaterNotes extends Component {
             note = this.refs.note.getValue();
         if (title && note) {
             this.props.addNote(title, note);
-            this.refs.title.getInputNode().value = '';
-            this.refs.note.getInputNode().value = '';
+            this.setState({
+                titleInput: '',
+                noteInput: ''
+            })
         }
+        e.preventDefault();
+    }
 
+    handleTitleInput(e){
+        this.setState({
+            titleInput: e.target.value
+        });
+        e.preventDefault();
+    }
+
+    handleNoteInput(e){
+        this.setState({
+            noteInput: e.target.value
+        });
         e.preventDefault();
     }
 
@@ -32,13 +54,16 @@ class CreaterNotes extends Component {
                     <TextField
                         hintText='Title'
                         ref="title"
+                        onChange={::this.handleTitleInput}
+                        value={this.state.titleInput}
                     /><br />
                     <TextField
-                        hintText="Message Field"
-                        floatingLabelText="MultiLine and FloatingLabel"
+                        floatingLabelText="Message Field"
                         multiLine={true}
                         rows={2}
                         ref="note"
+                        onChange={::this.handleNoteInput}
+                        value={this.state.noteInput}
                     />
                     <FlatButton style={{marginLeft: '75%'}}
                                 label='Add'
