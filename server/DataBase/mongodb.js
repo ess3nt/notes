@@ -47,7 +47,7 @@ export function createNote(data) {
 export function toggleNote(id) {
     let callback = (err, req) => {
         console.log(err, req, 'body callback');
-        if(req[0].done){
+        if( req[0] && req[0].done){
             let update = { done: false };
       /*      Note.remove(id).remove((err, req) => {
                 console.log(err, req, 'body remove');

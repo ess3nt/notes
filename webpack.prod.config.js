@@ -37,7 +37,7 @@ module.exports = {
   module: {
     loaders: [
   { test: /\.js?$/,
-    loader: 'react-hot!babel',
+    loader: 'react-hot-loader!babel',
     include: path.join(__dirname, 'client')
   },
   { test: /\.scss$/,

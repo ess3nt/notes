@@ -23,7 +23,7 @@ export default {
   module: {
     loaders: [
       { test: /\.js?$/,
-        loader: 'react-hot!babel',
+        loader: 'react-hot-loader/webpack!babel',
         include: path.join(__dirname, 'client')
       },
       { test: /\.scss$/,
