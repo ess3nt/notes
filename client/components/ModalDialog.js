@@ -17,46 +17,46 @@ export default class ModalDialog extends React.Component {
         this.setState({open: false});
     };
 
-    handlToggleNote = (id, done, e) => {
-        if(done) {
+    handleToggleNote = (id) => {
+            this.props.toggleNote(id)
+    }
+
+    handleDeleteNote = (id) => {
             this.props.deleteNote(id);
             this.setState({open: false});
-        } else {
-            this.props.toggleNote(id)
-        }
     }
 
     render() {
         let { note } = this.props;
 
-        let buttonToggle = () => {
-            if ( note.done){
-                return (
-                    <Link to="/">
-                        <FlatButton
-                            label='Delete'
-                            onClick={this.handlToggleNote.bind(this, note.id, note.done)}
-                        />
-                    </Link>
-                )
-            } else  {
-                return (<FlatButton
-                        label='Done'
-                        onClick={this.handlToggleNote.bind(this, note.id, note.done)}
-                    />
-                )
-            }
-        }
-
-        const actions = [
-            <Link to="/">
-                <FlatButton
-                    label="Cancel"
-                    onClick={this.handleClose}
-                />
-            </Link>,
-            buttonToggle()
+        let actions = [
+            <FlatButton
+                label={note.done ? 'Undone' : 'Done'}
+                onClick={this.handleToggleNote.bind(this, note.id)}
+            />
         ];
+
+        if (note.done) {
+            actions.push(<Link to="/">
+                    <FlatButton
+                    label='Delete'
+                    onClick={this.handleDeleteNote.bind(this, note.id)}
+                    />
+                </Link>,
+                <Link to="/">
+                    <FlatButton
+                        label="Close"
+                        onClick={this.handleClose}
+                    />
+                </Link>);
+        } else {
+            actions.push(<Link to="/">
+                    <FlatButton
+                        label="Close"
+                        onClick={this.handleClose}
+                    />
+                </Link>)
+        }
 
         return (<Dialog
                 bodyStyle={{textDecoration: (note.done ? 'line-through' : 'none')}}
