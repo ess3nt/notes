@@ -7,6 +7,10 @@
     width: 270px;
     margin: 5px;
 }
+.card_note a {
+    text-decoration: none;
+    color: black;
+}
 .close_img{
     position: absolute;
     left: 240px;

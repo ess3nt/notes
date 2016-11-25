@@ -3,8 +3,10 @@ import webpack from 'webpack'
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 
 export default {
-  devtool: 'eval-source-map',
-  entry: ['webpack-hot-middleware/client',
+  devtool: 'cheap-module-eval-source-map',
+
+  entry: [ 'react-hot-loader/patch',
+    'webpack-hot-middleware/client',
     path.join(__dirname, '/client/index')
   ],
   output: {
@@ -16,14 +18,13 @@ export default {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin("bundle.css")
+    new ExtractTextPlugin("bundle.css"),
   ],
 
   module: {
     loaders: [
       { test: /\.js?$/,
-        loader: 'react-hot-loader/webpack!babel',
+        loader: 'babel',
         include: path.join(__dirname, 'client')
       },
       { test: /\.scss$/,
