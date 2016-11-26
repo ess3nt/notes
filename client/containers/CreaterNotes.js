@@ -56,7 +56,7 @@ class CreaterNotes extends Component {
                         ref="title"
                         onChange={::this.handleTitleInput}
                         value={this.state.titleInput}
-                    /><br />
+                    />
                     <TextField
                         floatingLabelText="Message Field"
                         multiLine={true}

@@ -1,6 +1,3 @@
-/**
- * Created by Igor on 16.11.2016.
- */
 const ADD_NOTE = 'ADD_NOTE',
       FETCHING_NOTES = 'FETCHING_NOTES',
       FETCHED_NOTES = 'FETCHED_NOTES',

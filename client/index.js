@@ -25,21 +25,23 @@ render(
     rootEl
 );
 
-if (module.hot) {
-    module.hot.accept('./routes', () => {
-        // If you use Webpack 2 in ES modules mode, you can
-        // use <App /> here rather than require() a <NextApp />.
-        const NextApp = require('./routes');
-        render(
-            <AppContainer>
-                <MuiThemeProvider >
-                    <Provider store={store}>
-                        <Router history={browserHistory} routes={routes}/>
-                    </Provider>
-                </MuiThemeProvider>
-            </AppContainer>,
-            rootEl
-        );
-    });
+if (process.env.NODE_ENV !== 'production') {
+    if (module.hot) {
+        module.hot.accept('./routes', () => {
+            // If you use Webpack 2 in ES modules mode, you can
+            // use <App /> here rather than require() a <NextApp />.
+            const NextApp = require('./routes');
+            render(
+                <AppContainer>
+                    <MuiThemeProvider >
+                        <Provider store={store}>
+                            <Router history={browserHistory} routes={routes}/>
+                        </Provider>
+                    </MuiThemeProvider>
+                </AppContainer>,
+                rootEl
+            );
+        });
+    }
 }
 

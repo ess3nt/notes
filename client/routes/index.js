@@ -8,11 +8,10 @@ import MadalDialogCont from '../containers/MadalDialogCont'
 
 
 export const routes = (
-
     <div>
         <Route path='/' component={App}>
             <Route path='/note/:id' component={MadalDialogCont} />
         </Route>
-
+        <Route path='*' component={MadalDialogCont} />
     </div>
 );

@@ -40,6 +40,7 @@ body{
   background-image: -webkit-linear-gradient(left bottom, #60B29B 0%, #4C7070 0%, #7DD4C0 65%, #8BBFBB 100%, #83DEC6 100%);
   background-image: -ms-linear-gradient(left bottom, #60B29B 0%, #4C7070 0%, #7DD4C0 65%, #8BBFBB 100%, #83DEC6 100%);
   background-image: linear-gradient(to left bottom, #60B29B 0%, #4C7070 0%, #7DD4C0 65%, #8BBFBB 100%, #83DEC6 100%);
+  overflow: visible !important;
 }
 .App {
   display: block;

@@ -21,7 +21,7 @@ const Note = mongoose.model('Note', NoteSchema); //todo probably mistake
 
 export function setUpConnection() {
     // mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`);
-    mongoose.connect(`mongodb://noteuser:521857@ds163387.mlab.com:63387/notedb`);
+    mongoose.connect(`mongodb://${config.db.username}:${config.db.password}@${config.db.host}:${config.db.port}/${config.db.name}`);
 }
 
 export function listNotes() {
@@ -40,31 +40,26 @@ export function createNote(data) {
     return note.save();
 }
 
-/*export function deleteNote(id) {
-    return Note.findById(id).remove();
-}*/
-
 export function toggleNote(id) {
     let callback = (err, req) => {
         console.log(err, req, 'body callback');
         if( req[0] && req[0].done){
             let update = { done: false };
-      /*      Note.remove(id).remove((err, req) => {
-                console.log(err, req, 'body remove');
-                return 'ok';
-            })*/
+
             Note.findOneAndUpdate(id, update, (err, req) => {
                 console.log(err, req, 'body update');
                 return 'ok';
             })
         } else {
             let update = { done: true };
+
             Note.findOneAndUpdate(id, update, (err, req) => {
                 console.log(err, req, 'body update');
                 return 'ok';
             })
         }
     };
+
     return Note.find(id).find(callback);
 
 }

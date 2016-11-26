@@ -22,9 +22,20 @@ class MadalDialogCont extends React.Component {
 }
 
 const mapStateToProps = (state, { params }) => {
-    return {
-        note: state.notes.filter(note => note.id === params.id)[0]
+    let notFoundPage = {
+        note: {
+            title: '404 Page Not Found',
+            done: false,
+            errorPage: true
+        }
+    },
+        note = state.notes.filter(note => note.id === params.id)[0];
+
+    if (params.splat || !note){
+        return notFoundPage
     }
+
+    return { note }
 }
 
 export default withRouter(connect(mapStateToProps, actions)(MadalDialogCont))

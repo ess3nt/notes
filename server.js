@@ -15,6 +15,7 @@ import { serverPort } from './server/config.json';
 
 const port = (process.env.PORT || serverPort);
 const app = requestsSettings();
+
 // Set up connection of database
 db.setUpConnection();
 

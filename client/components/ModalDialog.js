@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 const customContentStyle = {
     width: '80%',
-    maxWidth: 'none',
+    maxWidth: 'none'
 };
 
 export default class ModalDialog extends React.Component {
@@ -28,34 +28,32 @@ export default class ModalDialog extends React.Component {
 
     render() {
         let { note } = this.props;
+        let btnDoneUndone = (<FlatButton
+                                label={note.done ? 'Undone' : 'Done'}
+                                onClick={this.handleToggleNote.bind(this, note.id)}
+                            />),
 
-        let actions = [
-            <FlatButton
-                label={note.done ? 'Undone' : 'Done'}
-                onClick={this.handleToggleNote.bind(this, note.id)}
-            />
-        ];
+            btnDelete = (<Link to="/">
+                            <FlatButton
+                                label='Delete'
+                                onClick={this.handleDeleteNote.bind(this, note.id)}
+                            />
+                        </Link>),
 
-        if (note.done) {
-            actions.push(<Link to="/">
-                    <FlatButton
-                    label='Delete'
-                    onClick={this.handleDeleteNote.bind(this, note.id)}
-                    />
-                </Link>,
-                <Link to="/">
-                    <FlatButton
-                        label="Close"
-                        onClick={this.handleClose}
-                    />
-                </Link>);
+            btnClose = (<Link to="/">
+                            <FlatButton
+                                label="Close"
+                                onClick={this.handleClose}
+                            />
+                        </Link>);
+
+        let actions;
+        if (note.errorPage){
+            actions = [btnClose]
+        } else if (note.done) {
+            actions = [btnDoneUndone, btnDelete ,btnClose];
         } else {
-            actions.push(<Link to="/">
-                    <FlatButton
-                        label="Close"
-                        onClick={this.handleClose}
-                    />
-                </Link>)
+            actions = [btnDoneUndone, btnClose];
         }
 
         return (<Dialog
