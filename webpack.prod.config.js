@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: null,
 
   entry: [
     './client/index'
@@ -23,6 +23,7 @@ module.exports = {
     new ExtractTextPlugin("bundle.css"),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
+      drop_console: true,
       compress: {
         warnings: false
       }

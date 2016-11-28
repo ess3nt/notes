@@ -7,26 +7,31 @@ import { rootReducer } from '../reducers'
 import thunk from 'redux-thunk'
 
 export default function configureStore() {
-    let logger; // todo some experiment
-    if (process.env.NODE_ENV !== 'prod') {
-        logger = createLogger();
-    } else {
-        logger = null;
+    let middlewares = [thunk],
+        devToolsExtensionRedux = f => f; // todo some experiment
+
+    if (process.env.NODE_ENV !== 'production') {
+        let logger = createLogger();
+        middlewares.push(logger);
+        devToolsExtensionRedux = window.devToolsExtension ? window.devToolsExtension() : f => f
     }
+
     const store = createStore(
         rootReducer,
         compose(
-            applyMiddleware(thunk, logger),
-            window.devToolsExtension ? window.devToolsExtension() : f => f
+            applyMiddleware(...middlewares),
+            devToolsExtensionRedux
         )
     );
 
-    if (module.hot) {
-        // Enable Webpack hot module replacement for reducers
-        module.hot.accept('../reducers', () => {
-            const nextRootReducer = require('../reducers/index')
-            store.replaceReducer(nextRootReducer)
-        });
+    if (process.env.NODE_ENV !== 'production') {
+        if (module.hot) {
+            // Enable Webpack hot module replacement for reducers
+            module.hot.accept('../reducers', () => {
+                const nextRootReducer = require('../reducers/index')
+                store.replaceReducer(nextRootReducer)
+            });
+        }
     }
 
     return store

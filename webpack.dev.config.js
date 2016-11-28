@@ -2,8 +2,10 @@ import path from 'path'
 import webpack from 'webpack'
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 
+const NODE_ENV = process.env.NODE_ENV || 'development'
+
 export default {
-  devtool: 'cheap-module-eval-source-map',
+  // devtool: 'cheap-inline-eval-source-map',
 
   entry: [ 'react-hot-loader/patch',
     'webpack-hot-middleware/client',
@@ -19,7 +21,21 @@ export default {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new ExtractTextPlugin("bundle.css"),
+    new webpack.DefinePlugin({
+        NODE_ENV: JSON.stringify(NODE_ENV)
+    })
   ],
+
+    resolve: {
+        modulesDirectories: ['node_modules'],
+        extensions: ['', '.js']
+    },
+
+    resolveLoader: {
+        modulesDirectories: ['node_modules'],
+        moduleTemplates: ['*-loader', '*'],
+        extensions: ['', '.js']
+    },
 
   module: {
     loaders: [

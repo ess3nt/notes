@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import ModalDialog from '../components/ModalDialog'
 import * as actions from '../actions'
 
-class MadalDialogCont extends React.Component {
+class ModalDialogCont extends React.Component {
 
     render() {
         const { note, toggleNote, deleteNote } = this.props;
@@ -38,5 +38,5 @@ const mapStateToProps = (state, { params }) => {
     return { note }
 }
 
-export default withRouter(connect(mapStateToProps, actions)(MadalDialogCont))
+export default withRouter(connect(mapStateToProps, actions)(ModalDialogCont))
 
