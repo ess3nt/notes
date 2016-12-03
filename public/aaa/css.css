@@ -7,7 +7,9 @@ body.dragging, body.dragging * {
     opacity: 0.5;
     z-index: 2000;
 }
-
+ol {
+    padding: 20px;
+}
 ol.example li.placeholder {
     position: relative;
     /** More li styles **/
@@ -20,7 +22,7 @@ ol.example li.placeholder:before {
 
 
 li {
-    display: block;
+    /*display: block;*/
     margin: 5px;
     padding: 5px;
     border: 1px solid #cccccc;

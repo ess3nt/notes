@@ -14,8 +14,12 @@ var group = $("ol.example").sortable({
             return $item.parent("ol")[0] == container.el[0];
     },
     onDrop: function ($item, container, _super) {
-        $('#serialize_output').text(
-            group.sortable("serialize").get().join("\n"));
+        console.log(group.sortable("serialize").get())
+        var data = group.sortable("serialize").get();
+
+        var jsonString = JSON.stringify(data, null, ' ');
+
+        $('#serialize_output').text(jsonString);
         _super($item, container);
     },
     serialize: function (parent, children, isContainer) {
