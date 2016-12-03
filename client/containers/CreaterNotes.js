@@ -54,6 +54,7 @@ class CreaterNotes extends Component {
                     <TextField
                         hintText='Title'
                         ref="title"
+                        errorText="This field is required"
                         onChange={::this.handleTitleInput}
                         value={this.state.titleInput}
                     />
