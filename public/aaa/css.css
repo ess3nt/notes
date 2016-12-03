@@ -7,9 +7,7 @@ body.dragging, body.dragging * {
     opacity: 0.5;
     z-index: 2000;
 }
-ol {
-    padding: 20px;
-}
+
 ol.example li.placeholder {
     position: relative;
     /** More li styles **/
@@ -48,3 +46,8 @@ pre {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px; }
+pre, ol {
+    float: left;
+    margin: 0;
+    padding: 0 20px;
+}

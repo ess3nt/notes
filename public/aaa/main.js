@@ -15,11 +15,11 @@ var group = $("ol.example").sortable({
     },
     onDrop: function ($item, container, _super) {
         console.log(group.sortable("serialize").get())
-        var data = group.sortable("serialize").get();
-
+        var data = group.sortable("serialize").get()[0].split(' ,').join(' \r\n ');
+        console.log(data)
         var jsonString = JSON.stringify(data, null, ' ');
-
-        $('#serialize_output').text(jsonString);
+        $('#serialize_output')[0].innerHTML = data;
+        // $('#serialize_output').text(jsonString);
         _super($item, container);
     },
     serialize: function (parent, children, isContainer) {
