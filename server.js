@@ -35,12 +35,15 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const indexPath = __dirname + '/index.html';
+// timeless
 const indexAAA = __dirname + '/public/aaa/index.html';
 
 const publicPath = express.static(__dirname + '/public');
 
 app.use('/public', publicPath);
+// timeless
 app.get('/aaa',(_, res) => { res.sendFile(indexAAA) });
+
 app.get('/*',(_, res) => { res.sendFile(indexPath) });
 
 app.listen(port);

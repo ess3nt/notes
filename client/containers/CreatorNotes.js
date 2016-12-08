@@ -8,21 +8,27 @@ import { connect } from 'react-redux'
 
 import { addNote } from '../actions'
 
-import './CreaterNotes.css'
+import './CreatorNotes.css'
 
-class CreaterNotes extends Component {
+class CreatorNotes extends Component {
     constructor(){
         super();
         this.state = {
             titleInput: '',
-            noteInput: ''
+            noteInput: '',
+            errorTextTitle: '',
+            errorTextNote: ''
         }
+
     }
 
     handleButton(e){
             // todo диспатч возвращает промис, сделать локальный стейт для кнопки
-        let title = this.refs.title.getValue(),
-            note = this.refs.note.getValue();
+        // метод получения value для компонента material-UI
+    //    let title = this.refs.title.getValue(),
+    //        note = this.refs.note.getValue();
+        let title = this.state.titleInput,
+            note = this.state.noteInput;
         if (title && note) {
             this.props.addNote(title, note);
             this.setState({
@@ -30,19 +36,18 @@ class CreaterNotes extends Component {
                 noteInput: ''
             })
         }
+
+            this.setState({
+                errorTextTitle: title ? '' : 'This field is required',
+                errorTextNote: note ? '' : 'This field is required'
+            })
+
         e.preventDefault();
     }
 
-    handleTitleInput(e){
+    onChange(field, e){
         this.setState({
-            titleInput: e.target.value
-        });
-        e.preventDefault();
-    }
-
-    handleNoteInput(e){
-        this.setState({
-            noteInput: e.target.value
+            [field]: e.target.value
         });
         e.preventDefault();
     }
@@ -50,23 +55,26 @@ class CreaterNotes extends Component {
     render(){
         return(
             <div className="wrapper_form_create_note">
-                <form onSubmit={::this.handleButton} ref="form">
+                <form onSubmit={::this.handleButton} ref="form" className="form_create_note">
                     <TextField
                         hintText='Title'
+                        errorText={this.state.errorTextTitle}
                         ref="title"
-                        errorText="This field is required"
-                        onChange={::this.handleTitleInput}
+                        onChange={this.onChange.bind(this, 'titleInput')}
                         value={this.state.titleInput}
                     />
                     <TextField
                         floatingLabelText="Message Field"
+                        errorText={this.state.errorTextNote}
                         multiLine={true}
                         rows={2}
                         ref="note"
-                        onChange={::this.handleNoteInput}
+                        onChange={this.onChange.bind(this, 'noteInput')}
                         value={this.state.noteInput}
                     />
-                    <FlatButton style={{marginLeft: '75%'}}
+                    <FlatButton style={{
+                                    marginLeft: '75%'
+                                }}
                                 label='Add'
                                 type="submit"
                     />
@@ -76,4 +84,4 @@ class CreaterNotes extends Component {
     }
 }
 
-export default connect(null, {addNote})(CreaterNotes)
+export default connect(null, {addNote})(CreatorNotes)

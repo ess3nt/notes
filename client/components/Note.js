@@ -28,8 +28,8 @@ export default class Note extends Component {
         super()
         this.state = {
         }
-        this.handleButtonClick = this.handleButtonClick.bind(this)
-        this.deleteNote = this.deleteNote.bind(this)
+   /*     this.handleButtonClick = this.handleButtonClick.bind(this)
+        this.deleteNote = this.deleteNote.bind(this)*/
     }
 
     handleButtonClick(id, e){
